@@ -14,23 +14,23 @@ public class Task {
 		// 演算変数2
 		StringBuilder str2 = new StringBuilder();
 		// 演算子
-		String operator = "";
+		Character operator = null;
 		// 演算子出現フラグ
 		boolean operatorFlg = false;
 		// 結果
 		int result = 0;
 
 		for (int m = 0; m < expression.length(); m++) {
-			String expChild = String.valueOf(expression.charAt(m));
-			if (!expChild.equals("+") && !expChild.equals("-") && !expChild.equals("*") && !expChild.equals("/")) {
-				if (operatorFlg) {
-					str1.append(expChild);
-				} else {
-					str2.append(expChild);
-				}
-			} else {
-				operator = expChild;
+			char c = expression.charAt(m);
+			if (c == '+' || c == '-' || c == '*' || c == '/') {
+				operator = c;
 				operatorFlg = true;
+			} else {
+				if (operatorFlg) {
+					str1.append(c);
+				} else {
+					str2.append(c);
+				}
 			}
 		}
 
@@ -40,16 +40,16 @@ public class Task {
 		int strInt1 = Integer.parseInt(str1.toString());
 		int strInt2 = Integer.parseInt(str2.toString());
 		switch (operator) {
-		case "+":
+		case '+':
 			result = strInt1 + strInt2;
 			break;
-		case "-":
+		case '-':
 			result = strInt1 - strInt2;
 			break;
-		case "*":
+		case '*':
 			result = strInt1 * strInt2;
 			break;
-		case "/":
+		case '/':
 			result = strInt1 / strInt2;
 			break;
 		}
